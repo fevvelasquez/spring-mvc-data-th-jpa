@@ -3,7 +3,6 @@ package me.fevvelasquez.quicknotes.spring.mvc.data.th.jpa.controller;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,8 +10,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import me.fevvelasquez.quicknotes.spring.mvc.data.th.jpa.model.dao.IClientDAO;
 import me.fevvelasquez.quicknotes.spring.mvc.data.th.jpa.model.entity.Client;
+import me.fevvelasquez.quicknotes.spring.mvc.data.th.jpa.model.service.IClientService;
 
 /**
  * Quick Notes.
@@ -25,15 +24,14 @@ public class ClientController {
 
 	// We may use a @service instead the DAO.
 	@Autowired
-	@Qualifier("qclientDAO") // If multiple implementations
-	private IClientDAO clientDAO;
+	private IClientService clientService;
 
 	/**
 	 * Display list of Clients.
 	 */
 	@RequestMapping(value = { "/clients", "/" }, method = RequestMethod.GET)
 	public String getAll(Model model) {
-		model.addAttribute("mclients", clientDAO.findAll());
+		model.addAttribute("mclients", clientService.findAll());
 		return "vclients"; // resources/templates/vclients.html
 	}
 
@@ -51,7 +49,7 @@ public class ClientController {
 	 */
 	@GetMapping("/client/{id}")
 	public String modify(@PathVariable Long id, Model model) {
-		model.addAttribute("mclient", clientDAO.findOne(id));
+		model.addAttribute("mclient", clientService.findOne(id));
 		return "vclient";
 
 	}
@@ -61,7 +59,7 @@ public class ClientController {
 	 */
 	@RequestMapping(value = "/client", method = RequestMethod.POST)
 	public String save(Client client) {
-		clientDAO.save(client);
+		clientService.save(client);
 		return "redirect:clients";
 	}
 
@@ -70,7 +68,7 @@ public class ClientController {
 	 */
 	@RequestMapping("/clientr/{id}")
 	public String remove(@PathVariable Long id) {
-		clientDAO.delete(id);
+		clientService.delete(id);
 		return "redirect:/clients";
 	}
 }
