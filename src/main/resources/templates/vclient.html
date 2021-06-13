@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<!-- Quick Notes fevvelasquez -->
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Client</title>
+</head>
+<body>
+
+
+	<!-- menu-start -->
+	<h3>Menu</h3>
+	<ul>
+		<li><a th:href="@{/clients}">Clients ...</a></li>
+	</ul>
+	<!-- menu-end -->
+
+
+	<!-- CONTAINER -->
+	<div>
+		<h1>Client</h1>
+
+		<form
+			th:action="@{/client}"
+			th:object="${mclient}"
+			method="post">
+			<div>
+				<label for="fname">First name</label>
+				<div>
+					<input
+						type="text"
+						th:field="*{fname}" />
+				</div>
+			</div>
+			<div>
+				<label for="lname">Last name</label>
+				<div>
+					<input
+						type="text"
+						th:field="*{lname}">
+				</div>
+			</div>
+			<div>
+				<label for="email">E-mail</label>
+				<div>
+					<input
+						type="email"
+						th:field="*{email}" />
+				</div>
+			</div>
+			<div>
+				<div>
+					<input
+						type="submit"
+						value="Submit">
+				</div>
+			</div>
+			<input
+				type="hidden"
+				th:field="*{id}" />
+		</form>
+
+	</div>
+	<!-- CONTAINER END -->
+
+
+</body>
+</html>

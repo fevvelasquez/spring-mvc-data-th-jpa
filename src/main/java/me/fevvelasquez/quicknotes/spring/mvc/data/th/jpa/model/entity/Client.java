@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -35,6 +36,13 @@ public class Client {
 	@Temporal(TemporalType.DATE)
 	@Column(name = "created_at")
 	private Date createdAt;
+
+	// Do it before insert with em.persist
+	@PrePersist
+	public void prePersist() {
+		this.createdAt = new Date();
+
+	}
 
 	public Long getId() {
 		return id;

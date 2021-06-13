@@ -11,6 +11,9 @@ import java.util.List;
  *
  */
 public interface IDAO<T, ID_T> {
+
 	public List<T> findAll();
+
+	public void save(T t);
 
 }

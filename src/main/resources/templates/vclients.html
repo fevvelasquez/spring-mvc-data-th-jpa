@@ -6,27 +6,39 @@
 <title>Clients</title>
 </head>
 <body>
-	<h1>Clients</h1>
-	<table>
-		<thead>
-			<tr>
-				<th>Id</th>
-				<th>First Name</th>
-				<th>Last Name</th>
-				<th>E-mail</th>
-				<th>Created At</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr th:each="client: ${mclients}">
-				<td th:text="${client.id}"></td>
-				<td th:text="${client.fname}"></td>
-				<td th:text="${client.lname}"></td>
-				<td th:text="${client.email}"></td>
-				<td th:text="${client.createdAt}"></td>
-			</tr>
-		</tbody>
-	</table>
+	<!-- menu-start -->
+	<h3>Menu</h3>
+	<ul>
+		<li><a th:href="@{/client}">Client ...</a></li>
+	</ul>
+	<!-- menu-end -->
+
+	<!-- CONTAINER -->
+	<div class="container">
+		<h1 class="text-secondary">Clients</h1>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>First Name</th>
+					<th>Last Name</th>
+					<th>E-mail</th>
+					<th>Created At</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="client: ${mclients}">
+					<td th:text="${client.id}"></td>
+					<td th:text="${client.fname}"></td>
+					<td th:text="${client.lname}"></td>
+					<td th:text="${client.email}"></td>
+					<td th:text="${client.createdAt}"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<!-- CONTAINER END -->
+
 
 </body>
 </html>
