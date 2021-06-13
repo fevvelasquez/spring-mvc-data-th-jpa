@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -29,7 +31,7 @@ public class ClientController {
 	/**
 	 * Display list of Clients.
 	 */
-	@RequestMapping(value = { "/clients", "/", "/index", "/index.html" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/clients", "/" }, method = RequestMethod.GET)
 	public String getAll(Model model) {
 		model.addAttribute("mclients", clientDAO.findAll());
 		return "vclients"; // resources/templates/vclients.html
@@ -45,11 +47,30 @@ public class ClientController {
 	}
 
 	/**
-	 * Insert client and redirect to "/clients".
+	 * Display form to modify client info.
+	 */
+	@GetMapping("/client/{id}")
+	public String modify(@PathVariable Long id, Model model) {
+		model.addAttribute("mclient", clientDAO.findOne(id));
+		return "vclient";
+
+	}
+
+	/**
+	 * Insert / Update client and redirect to "/clients".
 	 */
 	@RequestMapping(value = "/client", method = RequestMethod.POST)
 	public String save(Client client) {
 		clientDAO.save(client);
 		return "redirect:clients";
+	}
+
+	/**
+	 * Delete client and redirect to "/clients".
+	 */
+	@RequestMapping("/clientr/{id}")
+	public String remove(@PathVariable Long id) {
+		clientDAO.delete(id);
+		return "redirect:/clients";
 	}
 }

@@ -9,7 +9,7 @@
 	<!-- menu-start -->
 	<h3>Menu</h3>
 	<ul>
-		<li><a th:href="@{/client}">Client ...</a></li>
+		<li><a th:href="@{/client}">[ new ]</a></li>
 	</ul>
 	<!-- menu-end -->
 
@@ -24,6 +24,8 @@
 					<th>Last Name</th>
 					<th>E-mail</th>
 					<th>Created At</th>
+					<th></th>					
+					<th></th>					
 				</tr>
 			</thead>
 			<tbody>
@@ -33,6 +35,8 @@
 					<td th:text="${client.lname}"></td>
 					<td th:text="${client.email}"></td>
 					<td th:text="${client.createdAt}"></td>
+					<td> <a th:href="@{/client/} + ${client.id}"> [ modify ] </a></td>
+					<td> <a th:href="@{/clientr/} + ${client.id}" onclick="return confirm('Are You Sure?')"> [ remove ] </a></td>
 				</tr>
 			</tbody>
 		</table>

@@ -27,18 +27,32 @@ public class ClientDAO implements IClientDAO {
 	@PersistenceContext
 	private EntityManager em;
 
-	// Wrap method content into a transaction
 	@Transactional(readOnly = true)
 	@Override
 	public List<Client> findAll() {
 		return em.createQuery("from Client", Client.class).getResultList();
 	}
+	
+	@Transactional(readOnly = true)
+	@Override
+	public Client findOne(Long id) {
+		return em.find(Client.class, id);
+	}
 
-	// Wrap method content into a transaction
 	@Transactional
 	@Override
 	public void save(Client client) {
-		em.persist(client);
+		if (client.getId() == null) {
+			em.persist(client);
+		} else {
+			em.merge(client);
+		}
+	}
+
+	@Transactional
+	@Override
+	public void delete(Long id) {
+		em.remove(findOne(id));
 	}
 
 }

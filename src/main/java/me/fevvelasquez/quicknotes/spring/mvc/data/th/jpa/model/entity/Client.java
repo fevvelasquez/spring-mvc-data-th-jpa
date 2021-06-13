@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -37,8 +38,8 @@ public class Client {
 	@Column(name = "created_at")
 	private Date createdAt;
 
-	// Do it before insert with em.persist
-	@PrePersist
+	@PrePersist // Do it before insert with em.persist
+	@PreUpdate  // Do it before insert with em.merge
 	public void prePersist() {
 		this.createdAt = new Date();
 
