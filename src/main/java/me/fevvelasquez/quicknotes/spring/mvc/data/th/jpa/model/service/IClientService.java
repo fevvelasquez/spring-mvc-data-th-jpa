@@ -1,6 +1,6 @@
 package me.fevvelasquez.quicknotes.spring.mvc.data.th.jpa.model.service;
 
-import me.fevvelasquez.quicknotes.spring.mvc.data.th.jpa.model.dao.IClientDAO;
+import me.fevvelasquez.quicknotes.spring.mvc.data.th.jpa.model.entity.Client;
 
 /**
  * Quick Notes.
@@ -8,6 +8,5 @@ import me.fevvelasquez.quicknotes.spring.mvc.data.th.jpa.model.dao.IClientDAO;
  * @author fevvelasquez
  *
  */
-public interface IClientService extends IClientDAO {
-
+public interface IClientService extends IService<Client, Long> {
 }

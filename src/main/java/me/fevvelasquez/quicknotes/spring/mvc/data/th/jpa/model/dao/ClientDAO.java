@@ -19,6 +19,7 @@ import me.fevvelasquez.quicknotes.spring.mvc.data.th.jpa.model.entity.Client;
  * @author fevvelasquez
  *
  */
+@Deprecated
 @Repository //("qclientDAO")
 public class ClientDAO implements IClientDAO {
 

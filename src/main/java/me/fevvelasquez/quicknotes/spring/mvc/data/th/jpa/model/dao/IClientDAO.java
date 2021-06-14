@@ -10,6 +10,7 @@ import me.fevvelasquez.quicknotes.spring.mvc.data.th.jpa.model.entity.Client;
  * @author fevvelasquez
  *
  */
+@Deprecated
 public interface IClientDAO extends IDAO<Client, Long> {
 
 }

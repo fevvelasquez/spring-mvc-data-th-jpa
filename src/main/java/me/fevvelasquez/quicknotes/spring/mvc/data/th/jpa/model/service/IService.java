@@ -1,4 +1,4 @@
-package me.fevvelasquez.quicknotes.spring.mvc.data.th.jpa.model.dao;
+package me.fevvelasquez.quicknotes.spring.mvc.data.th.jpa.model.service;
 
 import java.util.List;
 
@@ -10,8 +10,7 @@ import java.util.List;
  * @author fevvelasquez
  *
  */
-@Deprecated
-public interface IDAO<T, ID_T> {
+public interface IService<T, ID_T> {
 
 	public List<T> findAll();
 
