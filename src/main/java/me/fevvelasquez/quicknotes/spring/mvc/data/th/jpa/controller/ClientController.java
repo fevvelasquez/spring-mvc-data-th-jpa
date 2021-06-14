@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 import me.fevvelasquez.quicknotes.spring.mvc.data.th.jpa.model.entity.Client;
 import me.fevvelasquez.quicknotes.spring.mvc.data.th.jpa.model.service.IClientService;
@@ -20,6 +22,7 @@ import me.fevvelasquez.quicknotes.spring.mvc.data.th.jpa.model.service.IClientSe
  *
  */
 @Controller
+@SessionAttributes("client")
 public class ClientController {
 
 	// We may use a @service instead the DAO.
@@ -31,7 +34,7 @@ public class ClientController {
 	 */
 	@RequestMapping(value = { "/clients", "/" }, method = RequestMethod.GET)
 	public String getAll(Model model) {
-		model.addAttribute("mclients", clientService.findAll());
+		model.addAttribute("clients", clientService.findAll());
 		return "vclients"; // resources/templates/vclients.html
 	}
 
@@ -40,7 +43,7 @@ public class ClientController {
 	 */
 	@RequestMapping("/client") // GET by default // model can also be a Map<String, Object>
 	public String create(Map<String, Object> model) {
-		model.put("mclient", new Client());
+		model.put("client", new Client());
 		return "vclient";
 	}
 
@@ -49,7 +52,7 @@ public class ClientController {
 	 */
 	@GetMapping("/client/{id}")
 	public String modify(@PathVariable Long id, Model model) {
-		model.addAttribute("mclient", clientService.findOne(id));
+		model.addAttribute("client", clientService.findOne(id));
 		return "vclient";
 
 	}
@@ -58,8 +61,10 @@ public class ClientController {
 	 * Insert / Update client and redirect to "/clients".
 	 */
 	@RequestMapping(value = "/client", method = RequestMethod.POST)
-	public String save(Client client) {
+	public String save(Client client, SessionStatus sessionStatus) {
+		System.out.println(client);
 		clientService.save(client);
+		sessionStatus.setComplete(); // Clean client
 		return "redirect:clients";
 	}
 

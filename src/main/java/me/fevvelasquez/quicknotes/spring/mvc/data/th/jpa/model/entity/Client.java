@@ -85,4 +85,12 @@ public class Client {
 		this.createdAt = createdAt;
 	}
 
+	@Override
+	public String toString() {
+		return "Client [id=" + id + ", fname=" + fname + ", lname=" + lname + ", email=" + email + ", createdAt="
+				+ createdAt + "]";
+	}
+	
+	
+
 }

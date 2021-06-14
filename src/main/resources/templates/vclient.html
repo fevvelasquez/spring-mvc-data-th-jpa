@@ -11,7 +11,7 @@
 	<!-- menu-start -->
 	<h3>Menu</h3>
 	<ul>
-		<li><a th:href="@{/clients}">Clients ...</a></li>
+		<li><a th:href="@{/clients}">[ Clients ]</a></li>
 	</ul>
 	<!-- menu-end -->
 
@@ -22,7 +22,7 @@
 
 		<form
 			th:action="@{/client}"
-			th:object="${mclient}"
+			th:object="${client}"
 			method="post">
 			<div>
 				<label for="fname">First name</label>
@@ -55,9 +55,11 @@
 						value="Submit">
 				</div>
 			</div>
-			<input
+			<!-- We use @SessionAtrributes now START-->
+			<!-- input
 				type="hidden"
-				th:field="*{id}" />
+				th:field="*{id}" /-->
+			<!-- We use @SessionAtrributes now END-->
 		</form>
 
 	</div>
