@@ -62,7 +62,6 @@ public class ClientController {
 	 */
 	@RequestMapping(value = "/client", method = RequestMethod.POST)
 	public String save(Client client, SessionStatus sessionStatus) {
-		System.out.println(client);
 		clientService.save(client);
 		sessionStatus.setComplete(); // Clean client
 		return "redirect:clients";
